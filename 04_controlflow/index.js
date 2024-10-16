@@ -46,11 +46,13 @@ const loggedfromGoogle =false
 const loggedInFromEmail =true
 
 
-if (userLoggedIn && debitCard) {
-    console.log("Allow to Shoping");
+// if (userLoggedIn && debitCard) {
+//     console.log("Allow to Shoping");
     
-}
-if (loggedfromGoogle || loggedInFromEmail) {
-    console.log("ALLowd to buy Course");
+// }
+// if (loggedfromGoogle || loggedInFromEmail) {
+//     console.log("ALLowd to buy Course");
     
-}
+// }
+
+
