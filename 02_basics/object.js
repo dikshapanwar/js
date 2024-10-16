@@ -48,7 +48,7 @@ jsUser.greetingTwo =function()
 const tinderUser ={}
 tinderUser.id="123ABCUY";
 tinderUser.name="USer";
-tinderUser.email="user@gmail.com"
+tinderUser.email="user@gmail.com";
 tinderUser.isLoggedIn=false
 //  console.log(tinderUser);
 
@@ -62,7 +62,7 @@ userfullname:{
 }
     }
 }
-console.log(regularUser.fullname.userfullname.lastname);
+// console.log(regularUser.fullname.userfullname.lastname);
 
  
 //Merge object
@@ -82,4 +82,9 @@ const obj2={
 
 // const obj3={...obj1,...obj2};
 const obj3=Object.assign({},obj1,obj2)
-console.log(obj3);
+// console.log(obj3);
+// console.log(tinderUser);
+// console.log(Object.keys(tinderUser));
+// console.log(Object.values(tinderUser));
+// console.log(Object.entries(tinderUser));
+console.log(tinderUser.hasOwnProperty('isLogged'));
