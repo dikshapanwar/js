@@ -5,6 +5,7 @@ let studentName=1234578
 // console.log(score);
 //console.log(isLoggedIn);
 // console.log(studentName)
+
 //CONVERSTION OF DATATYPE
 //1.NUMBER
 let valueInNumber=Number(score)
