@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom |Chai And Coffee</title>
+</head>
+
+<body style="background-color: black; color: white;">
+    <ul class="language">
+        <li>JAVASCRIPT</li>
+    </ul>
+</body>
+<script>
+    //BASIC FUNCTION
+    function addLanguage(langName) {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `${langName}`;
+        document.querySelector('.language').appendChild(listItem)
+
+    }
+    addLanguage("HTML")
+    addLanguage("CSS")
+
+    //Optimise Function
+    function addOptiLanguage(langName) {
+        const li = document.createElement('li')
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)
+    }
+    addOptiLanguage('C++')
+</script>
+//EDIT FUNCTION
+
+document.
+</html>
