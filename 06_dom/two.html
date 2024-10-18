@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM || CHAI OR COFFEE</title>
+</head>
+<body style="background-color: black; color: white;">
+    <div class="parent">
+        <div class="day">Sunday</div>
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+    </div>
+</body>
+<script>
+  const parents=  document.querySelector('.parent');
+// console.log(parents);
+// console.log(parents.children)
+// console.log(parents.children[1])
+// console.log(parents.children[1].textContent);
+
+const myArr=Array.from(parents.children)
+// console.log(myArr);
+// console.log(myArr.length);
+
+//  for (let index = 0; index < parents.children.length; index++) {
+//     console.log( parents.children[index]);
+//  }
+
+parents.children[0].style.backgroundColor="red"
+
+// console.log(parents.firstElementChild);
+// console.log(parents.lastElementChild);
+const day =document.querySelector('.day')
+// console.log(day.textContent);
+// console.log(day.parentElement);
+// console.log(day.nextElementSibling.textContent);
+console.log("Nodes:",parents.childNodes);
+
+</script>
+</html>
