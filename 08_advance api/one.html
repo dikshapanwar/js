@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="one.css">
+    <title>GitHub Profile Card</title>
+</head>
+<body style="background-color: #212121;">
+    <!-- Card to display GitHub user information -->
+    <div class="card">
+        <div class="card-header">
+            <img id="profile-image" src="" alt="Profile Image">
+        </div>
+        <div class="card-body">
+            <h2 id="profile-name">John Doe</h2>
+            <p id="profile-username">@johndoe</p>
+            <p>Full-stack Developer | Open-source Contributor</p>
+            <div class="card-stats">
+                <div class="stat">
+                    <h3>Repositories</h3>
+                    <p id="repo-count">0</p>
+                </div>
+                <div class="stat">
+                    <h3>Followers</h3>
+                    <p id="follower-count">0</p>
+                </div>
+                <div class="stat">
+                    <h3>Following</h3>
+                    <p id="following-count">0</p>
+                </div>
+            </div>
+            <a id="github-link" href="#" target="_blank" class="github-button">View GitHub Profile</a>
+        </div>
+    </div>
+
+    <script>
+        const requestUrl = 'https://api.github.com/users/hiteshchoudhary';
+        const xhr = new XMLHttpRequest();
+
+        xhr.open('GET', requestUrl);
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const data = JSON.parse(this.responseText);
+
+                // Update the profile card with dynamic data
+                document.getElementById('profile-image').src = data.avatar_url;
+                document.getElementById('profile-name').innerText = data.name;
+                document.getElementById('profile-username').innerText = `@${data.login}`;
+                document.getElementById('repo-count').innerText = data.public_repos;
+                document.getElementById('follower-count').innerText = data.followers;
+                document.getElementById('following-count').innerText = data.following;
+                document.getElementById('github-link').href = data.html_url;
+            }
+        };
+
+        xhr.send();
+    </script>
+</body>
+</html>
