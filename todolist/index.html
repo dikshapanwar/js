@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+            padding: 10px;
+            background: #f0f0f0;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background-color: #ff5c5c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Enter a new task" />
+        <button id="addTaskButton">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
