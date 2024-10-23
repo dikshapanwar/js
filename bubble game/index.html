@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0f7fa;
+        }
+
+        .game-container {
+            position: relative;
+            width: 80%;
+            height: 80%;
+            border: 2px solid #00796b;
+            overflow: hidden;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .blast {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #controls {
+            margin: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #00796b;
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: #005f52;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bubble Game</h1>
+    <div id="controls">
+        <button id="start" class="btn">Start</button>
+        <button id="stop" class="btn hidden">Stop</button>
+    </div>
+    <div class="game-container" id="gameContainer">
+        <div id="score">Score: 0</div>
+    </div>
+    <script>
+        const gameContainer = document.getElementById('gameContainer');
+        const scoreDisplay = document.getElementById('score');
+        const startButton = document.getElementById('start');
+        const stopButton = document.getElementById('stop');
+
+        let score = 0;
+        let gameInterval;
+        const bubbles = [];
+
+        // Function to create a bubble
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+
+            const size = Math.random() * 50 + 20; // Random size between 20 and 70
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.backgroundColor = getRandomColor(); // Assign random color
+
+            // Set initial position
+            const x = Math.random() * (gameContainer.clientWidth - size);
+            const y = Math.random() * (gameContainer.clientHeight - size);
+            bubble.style.left = `${x}px`;
+            bubble.style.top = `${y}px`;
+
+            // Add bubble to the game container
+            gameContainer.appendChild(bubble);
+            bubbles.push(bubble);
+
+            // Add click event to burst the bubble
+            bubble.addEventListener('click', () => {
+                blastBubble(bubble);
+            });
+        }
+
+        // Function to handle bubble blast
+        function blastBubble(bubble) {
+            bubble.classList.add('blast');
+            score++;
+            scoreDisplay.textContent = `Score: ${score}`;
+            setTimeout(() => {
+                bubble.remove();
+                bubbles.splice(bubbles.indexOf(bubble), 1); // Remove from the bubbles array
+            }, 300); // Remove bubble after blast animation
+        }
+
+        // Function to get a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Start the game
+        startButton.addEventListener('click', () => {
+            gameInterval = setInterval(createBubble, 1000); // Create a bubble every second
+            startButton.classList.add('hidden');
+            stopButton.classList.remove('hidden');
+        });
+
+        // Stop the game
+        stopButton.addEventListener('click', () => {
+            clearInterval(gameInterval); // Stop creating bubbles
+            stopButton.classList.add('hidden');
+            startButton.classList.remove('hidden');
+            // Remove all remaining bubbles
+            bubbles.forEach(bubble => bubble.remove());
+            bubbles.length = 0; // Clear the bubbles array
+        });
+    </script>
+</body>
+</html>
