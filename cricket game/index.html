@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        #gameContainer {
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        #pitch {
+            width: 200px;
+            height: 100px;
+            border: 2px solid #4CAF50;
+            position: relative;
+            margin: 20px auto;
+            background-color: #c8e6c9;
+        }
+        #ball {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+            left: 90px;
+            transition: left 0.3s;
+        }
+        .btn {
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        #score {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        #status {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cricket Game</h1>
+    <div id="gameContainer">
+        <div id="pitch">
+            <div id="ball"></div>
+        </div>
+        <div id="score">Score: 0</div>
+        <div id="status"></div>
+        <button class="btn" id="batButton">Bat</button>
+        <button class="btn" id="resetButton">Reset</button>
+    </div>
+    <script>
+        let score = 0;
+        let balls = 0;
+        const scoreDisplay = document.getElementById('score');
+        const statusDisplay = document.getElementById('status');
+        const batButton = document.getElementById('batButton');
+        const resetButton = document.getElementById('resetButton');
+        const ball = document.getElementById('ball');
+
+        // Function to simulate batting
+        function bat() {
+            if (balls < 6) {
+                const runs = Math.floor(Math.random() * 7); // Runs between 0 and 6
+                score += runs;
+                balls++;
+                scoreDisplay.textContent = `Score: ${score}`;
+                statusDisplay.textContent = `You scored ${runs} run(s)!`;
+                
+                // Simulate ball movement
+                ball.style.left = '90px'; // Reset ball position
+                setTimeout(() => {
+                    ball.style.left = '180px'; // Move ball to the "bowl" side
+                }, 100);
+                
+                if (balls === 6) {
+                    endInnings();
+                }
+            }
+        }
+
+        // Function to end innings
+        function endInnings() {
+            batButton.disabled = true; // Disable batting after 6 balls
+            statusDisplay.textContent = `Innings Over! Final Score: ${score}`;
+            ball.style.left = '90px'; // Reset ball position after innings
+        }
+
+        // Reset game
+        resetButton.addEventListener('click', () => {
+            score = 0;
+            balls = 0;
+            scoreDisplay.textContent = `Score: ${score}`;
+            statusDisplay.textContent = '';
+            batButton.disabled = false; // Re-enable batting
+            ball.style.left = '90px'; // Reset ball position
+        });
+
+        // Add event listener to bat button
+        batButton.addEventListener('click', bat);
+    </script>
+</body>
+</html>
