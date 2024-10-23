@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clouser</title>
+</head>
+
+<body style="background-color: black;color: wheat;">
+<button id="orange">
+  Orange
+</button>
+<button id="green">
+  Green
+</button>
+
+</body>
+
+
+<script>
+  //1.Lexical scoping
+  function outer() {
+    let userName = "Diksha Panwar"
+    //console.log(Twoname);
+    function inner() {
+      let Twoname = "Manisha"
+      console.log('inner function', userName);
+    }
+    function innerTwo() {
+      console.log('inner function Two', userName);
+      //console.log(Twoname);
+    }
+    //inner()
+    // innerTwo()
+  }
+  outer()
+  //console.log('Too Outer',userName);
+  //2.Clouser
+  // function makeFunc() {
+  //   const name = "Mozilla";
+  //   function displayName() {
+  //     console.log(name);
+  //   }
+  //   return displayName;
+  // }
+
+  // const myFunc = makeFunc();
+  // myFunc();
+
+</script>
+
+
+<script>
+//  document.getElementById('orange').onclick=function(){
+//   document.body.style.backgroundColor=`orange`
+//  }
+// document.getElementById('green').addEventListener('click',(e)=>{
+// e.preventDefault()
+// document.body.style.backgroundColor = 'green';
+// })
+
+function clickHandler(color){
+ return function(){
+document.body.style.backgroundColor=`${color}`
+  }
+}
+document.getElementById('orange').onclick=clickHandler("orange")
+document.getElementById('green').onclick=clickHandler("green")
+</script>
+</html>
